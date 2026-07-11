@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daraz</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  
+<!-- Top Navbar (Small Links) -->
+<div class="top-nav flex justify-end space-x-4 bg-orange-#f85606 p-2 text-sm text-white">
+  <!-- Dropdown Wrapper -->
+  <div class="relative">
+      <button id="appDropdownBtn" class="hover:underline">SAVE MORE ON APP</button>
+      
+      <!-- Dropdown Menu (Initially Hidden) -->
+      <div id="appDropdownMenu" class="hidden absolute left-0 mt-2 w-64 bg-white text-black shadow-lg rounded-lg p-4 z-10">
+          <p class="font-semibold text-center">Download the App</p>
+          <img src="CARD (1).jpg" alt="QR Code" class="w-32 h-32 mx-auto my-2 rounded-lg">
+          <div class="flex justify-center">
+            <a href="#" class="w-1/4">
+                <img src="apple store.png" alt="App Store" class="w-30">
+            </a>
+            <a href="#" class="w-1/4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Google_Play_Arrow_logo.svg/512px-Google_Play_Arrow_logo.svg.png" alt="Google Play" class="w-24">
+            </a>
+        </div>
+      </div>
+  </div>
+  <a href="#" class="hover:underline">SELL ON DARAZ</a>
+<!-- HELP & SUPPORT with Click Dropdown -->
+<div class="relative"> 
+  <button id="helpDropdownBtn" class="hover:underline focus:outline-none text-white">
+    HELP & SUPPORT
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div id="helpDropdownMenu" class="hidden absolute left-0 mt-2 w-64 bg-white text-black shadow-lg rounded-lg p-4 z-10 text-left">
+    <ul class="space-y-3 text-sm">
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Help Center</a></li>
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Contact Customer Care</a></li>
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Order</a></li>
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Shipping & Delivery</a></li>
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Payment</a></li>
+      <li><a href="#" class="block hover:text-orange-500 hover:underline" style="color: black;">Returns & Refunds</a></li>
+    </ul>
+  </div>
+</div>
+
+
+  <a href="#" id="loginBtn">LOGIN</a>
+  <a href="#" id="signupBtn" class="hover:underline">SIGN UP</a>
+
+  <a href="#" class="language hover:underline">زبان تبدیل کریں</a>
+</div>
+
+<!-- Login form -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-lg w-full max-w-md p-6 relative">
+    <!-- Close Button -->
+    <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-orange-500 text-2xl">&times;</button>
+
+    <!-- Tab Buttons -->
+    <div class="flex justify-center space-x-4 border-b mb-4">
+      <button id="passwordTab" class="py-2 px-4 font-bold border-b-2 border-orange-500">Password</button>
+      <button id="phoneTab" class="py-2 px-4 text-gray-500 hover:text-orange-500">Phone Number</button>
+    </div>
+
+    <!-- Form Container (reducing height) -->
+    <div class="flex flex-col space-y-4" style="height: 250px;"> <!-- Adjusted height -->
+      <!-- Password Form -->
+      <div id="passwordForm" class="flex flex-col space-y-4">
+        <input type="text" placeholder="Please enter your Phone Number or Email" class="border w-full p-2 rounded mb-3">
+        <div class="relative">
+          <input
+            id="password"
+            type="password"
+            placeholder="Please enter your password"
+            class="w-full p-2 border rounded-md pr-10"
+          />
+          <button
+            type="button"
+            id="togglePassword"
+            class="absolute inset-y-0 right-2 flex items-center text-gray-500"
+          >
+            👁️
+          </button>
+        </div>
+        
+        <a href="#" class="text-sm text-right block mb-3 text-orange-500 hover:underline">Forgot password?</a>
+        <button class="bg-orange-500 text-white w-full py-2 rounded font-semibold">LOG IN</button>
+      </div>
+
+      <!-- Phone Form (Hidden initially) -->
+      <div id="phoneForm" class="hidden flex flex-col space-y-4">
+        <input type="text" placeholder="Enter phone number" class="border w-full p-2 rounded mb-3">
+        <button class="bg-orange-500 text-white w-full py-2 rounded font-semibold">SEND CODE VIA WHATSAPP</button>
+      </div>
+    </div>
+
+    <p class="text-center mt-4 text-sm">
+      Don't have an account? 
+      <a href="#" id="signupLink" class="text-orange-500 hover:underline">Sign up</a>
+    </p>
+
+    <!-- Social Login -->
+    <div class="mt-4 text-center">
+      <p class="text-sm mb-2">Or, log in with</p>
+      <div class="flex justify-center space-x-6">
+        <button class="flex items-center space-x-2 border px-3 py-1 rounded hover:bg-gray-100">
+          <img src="https://img.icons8.com/color/24/google-logo.png" />
+          <span>Google</span>
+        </button>
+        <button class="flex items-center space-x-2 border px-3 py-1 rounded hover:bg-gray-100">
+          <img src="https://img.icons8.com/color/24/facebook-new.png" />
+          <span>Facebook</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sign Up form -->
+<div id="signupModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center">
+<div class="bg-white rounded-xl w-full max-w-sm sm:max-w-md p-8 relative shadow-xl min-h-[500px] flex flex-col justify-between">
+
+    <!-- Close Button -->
+    <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold">
+      &times;
+    </button>
+
+    <!-- Content Wrapper -->
+    <div class="flex flex-col justify-between flex-grow">
+
+      <!-- Modal Header -->
+      <h2 class="text-2xl font-semibold mb-6 text-center">Sign up</h2>
+
+      <!-- Input Fields -->
+      <div class="flex items-center mb-4 border rounded-md overflow-hidden">
+        <select class="bg-gray-100 px-2 py-2 text-sm border-r focus:outline-none">
+          <option value="+92">PK +92</option>
+          <option value="+91">IN +91</option>
+          <option value="+1">US +1</option>
+          <option value="+44">UK +44</option>
+        </select>
+        <input type="tel" placeholder="Enter your phone number" class="w-full px-3 py-2 focus:outline-none" />
+      </div>
+
+      <!-- Checkbox -->
+      <label class="flex items-start text-sm leading-snug mb-5">
+        <input type="checkbox" class="mt-1 mr-2" />
+        <span>
+          By creating and/or using your account, you agree to our
+          <a href="#" class="text-blue-600 hover:underline">Terms of Use</a> and
+          <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
+        </span>
+      </label>
+
+      <!-- Whatsapp Button -->
+      <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."></path>
+        </svg>
+        Send code via Whatsapp
+      </button>
+
+      <!-- Already have account -->
+      <p class="text-center text-sm mt-5">
+  Already have an account?
+  <a href="#" id="loginLink" class="text-orange-600 hover:underline">Log in Now</a>
+</p>
+
+      <!-- Divider -->
+      <div class="flex items-center my-6">
+        <hr class="flex-grow border-gray-300" />
+        <span class="mx-2 text-gray-400 text-sm">Or, sign up with</span>
+        <hr class="flex-grow border-gray-300" />
+      </div>
+
+      <!-- Social buttons -->
+      <div class="flex justify-center gap-4">
+        <button class="flex items-center gap-2 border px-4 py-2 rounded-md hover:bg-gray-100">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" />
+          Google
+        </button>
+        <button class="flex items-center gap-2 border px-4 py-2 rounded-md hover:bg-gray-100">
+          <img src="https://www.svgrepo.com/show/448224/facebook.svg" class="w-5 h-5" />
+          Facebook
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- Main Navbar (Logo, Search, Cart) -->
+    <nav class="main-nav">
+        <div class="logo">
+            <img src="image.png" alt="Daraz Logo">
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search in Daraz">
+            <button>🔍</button>
+        </div>
+        <div>
+          <a href="./cart.html" class="cart-icon">🛒</a>
+
+        </div>
+
+       
+    </nav>
+
+
+    <div class="slider-wrapper">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide"><img src="1.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="2.jpg" alt="Slide 2"></div>
+            <div class="slide"><img src="3.jpg" alt="Slide 3"></div>
+            <div class="slide"><img src="4.jpg" alt="Slide 4"></div>
+            <div class="slide"><img src="5.jpg" alt="Slide 5"></div>
+            <div class="slide"><img src="6.jpg" alt="Slide 6"></div>
+            <div class="slide"><img src="7.jpg" alt="Slide 7"></div>
+        </div>
+    
+        <!-- Navigation Buttons -->
+        <button class="prev" onclick="moveSlide(-1)">❮</button>
+        <button class="next" onclick="moveSlide(1)">❯</button>
+    
+        <!-- Dots -->
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+        </div>
+    </div>
+    <!-- Card-->
+    <div class="card">
+      <div class="slider-wrapper">
+      <img src="CARD (2).jpg" alt="Card Image">
+      <h2>TRY DARAZ APP</h2>
+  </div>
+  <div>
+      <div class="app-info">
+      <p class="rating"><b>⭐ 4.8 Rated</b></p>
+      <h3>Download the App now</h3>
+      <div class="features">
+          <div class="feature">
+          <div class="slider-wrapper">
+              <img src="shipping.png" alt="Free Shipping">
+              <p>Free Shipping</p>
+          </div>
+          </div>
+          </div>
+          <div class="features">
+              <div class="feature">   
+          <div class="slider-wrapper">
+              <img src="volucher.png" alt="Exclusive Vouchers">
+              <p>Exclusive Vouchers</p>
+          </div>
+          </div>
+          </div>
+      </div>
+  </div>
+    
+    <div class="slider-wrapper">    
+        <img class="qr" src="CARD (1).jpg" alt="QR Code">
+        <div class="buttons">
+            <img src="play store.png" alt="Google Play">
+            <img src="apple store.png" alt="App Store">
+            
+        </div>
+       
+    </div>
+    <p>Download the App Now!</p>
+    </div>
+    
+</div>    
+<!--Bar below the slide bar-->
+<div class="max-w-[1200px] mx-auto">
+    <a href="cart.html">
+        <img src="banner.png" alt="Sale Banner" class="w-full h-auto" />
+    </a>
+</div>
+
+<!-- Flash Sale Section -->
+
+<div class="max-w-[1200px] mx-auto px-4">
+    <!-- Flash Sale Heading -->
+    <h2 class="text-2xl font-bold text-gray-800 mt-6">Flash Sale</h2>
+
+    <!-- On Sale Now & Button -->
+    <div class="mt-2 border-b border-gray-300 pb-2 flex justify-between items-center">
+        <span class="text-orange-500 font-semibold">On Sale Now</span>
+        <a href="https://example.com/all-products" target="_blank"
+            class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600 transition">
+            SHOP ALL PRODUCTS
+        </a>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
+        <!-- Product Card as Button -->
+        <a href="product.html"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-lg transition block cursor-pointer">
+            <img src="headphones.jpg" alt="Product" class="w-full h-40 object-cover rounded-md">
+            <h3 class="text-sm font-medium mt-2">M10 , A6s , F2 earbuds Headphones,Handfree...</h3>
+            <p class="text-red-500 font-bold">Rs. 675</p>
+            <p class="text-gray-500 line-through text-xs">Rs. 800 -4%</p>
+        </a>
+
+        <a href="https://example.com/product2" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-lg transition block cursor-pointer">
+            <img src="bluetooth.jpg" alt="Product" class="w-full h-40 object-cover rounded-md">
+            <h3 class="text-sm font-medium mt-2">Airpods_Pro Wireless Earbuds Bluetooth...</h3>
+            <p class="text-red-500 font-bold">Rs. 566</p>
+            <p class="text-gray-500 line-through text-xs">Rs. 1,500 -62%</p>
+        </a>
+
+        <a href="https://example.com/product3" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-lg transition block cursor-pointer">
+            <img src="nido.jpg" alt="Product" class="w-full h-40 object-cover rounded-md">
+            <h3 class="text-sm font-medium mt-2">NESTLE NIDO Growing up Formula...</h3>
+            <p class="text-red-500 font-bold">Rs. 432</p>
+            <p class="text-gray-500 line-through text-xs">Rs. 999 -57%</p>
+        </a>
+
+        <a href="https://example.com/product4" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-lg transition block cursor-pointer">
+            <img src="fan.jpg" alt="Product" class="w-full h-40 object-cover rounded-md">
+            <h3 class="text-sm font-medium mt-2">Rechargeable Fan Charging Fan Premium...</h3>
+            <p class="text-red-500 font-bold">Rs. 239</p>
+            <p class="text-gray-500 line-through text-xs">Rs. 297 -20%</p>
+        </a>
+
+        <a href="https://example.com/product5" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-lg transition block cursor-pointer">
+            <img src="storage bag.jpg" alt="Product" class="w-full h-40 object-cover rounded-md">
+            <h3 class="text-sm font-medium mt-2">Improved Quality LARGE Storage Bags</h3>
+            <p class="text-red-500 font-bold">Rs. 1,022</p>
+            <p class="text-gray-500 line-through text-xs">Rs. 4,106 -75%</p>
+        </a>
+    </div>
+</div>
+<div class="max-w-[1200px] mx-auto px-4 mt-8">
+    <!-- Categories Heading -->
+    <h2 class="text-2xl font-bold text-gray-800">Categories</h2>
+
+    <!-- Category Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
+        
+        <!-- Category Card -->
+        <a href="https://example.com/mattress-protectors" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (1).jpg" alt="Mattress Protectors" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Mattress Protectors</span>
+        </a>
+
+        <a href="https://example.com/3d-printers" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (2).jpg" alt="3D Printers" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Pasta, Noodle & Pizza Tools</span>
+        </a>
+
+        <a href="https://example.com/pasta-tools" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (3).jpg" alt="Pasta Tools" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">3D Printers</span>
+        </a>
+
+        <a href="https://example.com/sim-tools" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (4).jpg" alt="SIM Tools" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">SIM Tools</span>
+        </a>
+
+        <a href="https://example.com/screen-protectors" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (5).jpg" alt="Screen Protectors" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Screen Protectors</span>
+        </a>
+
+        <a href="https://example.com/casserole-pots" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (6).jpg" alt="Casserole Pots" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Dining Set</span>
+        </a>
+
+        <a href="https://example.com/footwear" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (7).jpg" alt="Footwear" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Stickers</span>
+        </a>
+
+        <a href="https://example.com/pets-clippers" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (8).jpg" alt="Dog & Cat Clippers" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Hats & Caps</span>
+        </a>
+
+        <a href="https://example.com/hats-caps" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (9).jpg" alt="Hats & Caps" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Dining Sets</span>
+        </a>
+
+        <a href="https://example.com/dining-sets" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (10).jpg" alt="Dining Sets" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Microphones</span>
+        </a>
+
+        <a href="https://example.com/microphones" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (11).jpg" alt="Microphones" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Scooters</span>
+        </a>
+
+        <a href="https://example.com/scooters" target="_blank"
+            class="border rounded-lg p-3 shadow-sm hover:shadow-md transition flex flex-col items-center text-center cursor-pointer">
+            <img src="category (8).jpg" alt="Scooters" class="w-20 h-20 object-cover">
+            <span class="text-sm font-medium mt-2">Caps</span>
+        </a>
+
+    </div>
+</div>
+<!--Just for you category-->
+<section class="p-6 max-w-screen-lg mx-auto">
+    <h2 class="text-2xl font-semibold mb-4 text-left">Just For You</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (1).webp" alt="Product 1" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Luxury Wrist Watch for men</p>
+          <p class="text-orange-500 font-semibold">Rs.654</p>
+          <div class="text-yellow-400">★★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (2).webp" alt="Product 2" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Black Printed Name RIng</p>
+          <p class="text-orange-500 font-semibold">Rs.499</p>
+          <div class="text-yellow-400">★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (3).webp" alt="Product 3" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Black ring for Men</p>
+          <p class="text-orange-500 font-semibold">Rs.305</p>
+          <div class="text-yellow-400">★★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (4).webp" alt="Product 4" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Luxorious Black Wallet for Men</p>
+          <p class="text-orange-500 font-semibold">Rs.720</p>
+          <div class="text-yellow-400">★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (5).webp" alt="Product 5" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Vivo Y3 Prime</p>
+          <p class="text-orange-500 font-semibold">Rs.4439</p>
+          <div class="text-yellow-400">★★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (6).webp" alt="Product 6" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Decore red Net for bed</p>
+          <p class="text-orange-500 font-semibold">Rs.799</p>
+          <div class="text-yellow-400">★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (7).webp" alt="Product 7" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Men Flip-Flop Shirt</p>
+          <p class="text-orange-500 font-semibold">Rs.299</p>
+          <div class="text-yellow-400">★★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (8).webp" alt="Product 8" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Black Skull Mask</p>
+          <p class="text-orange-500 font-semibold">Rs.499</p>
+          <div class="text-yellow-400">★★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (9).webp" alt="Product 9" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Bubble Gun for kids</p>
+          <p class="text-orange-500 font-semibold">Rs.180</p>
+          <div class="text-yellow-400">★★★</div>
+        </div>
+      </a>
+      
+      <a href="#" target="_blank" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105">
+        <img src="item (10).webp" alt="Product 10" class="w-full h-40 object-cover">
+        <div class="p-4">
+          <p class="text-sm text-gray-600">Remote Helicopter</p>
+          <p class="text-orange-500 font-semibold">Rs.1125</p>
+          <div class="text-yellow-400">★★★★★</div>
+        </div>
+      </a>
+    </div>
+  </section>
+  
+<!--Footer Section-->
+<footer class="bg-gray-100 py-8 px-6 text-center">
+  <!-- Load More Button -->
+  <button class="border-2 border-blue-500 text-blue-500 px-10 py-3 rounded-md hover:bg-blue-500 hover:text-white transition text-lg font-semibold">
+    LOAD MORE
+  </button>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 text-left">
+    <!-- Customer Care Section -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-700">Customer Care</h3>
+      <ul class="mt-2 space-y-1">
+        <li><a href="#" class="text-blue-600 hover:underline">Help Center</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">How to Buy</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Corporate & Bulk Purchasing</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Returns & Refunds</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Daraz Shop</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Contact Us</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Purchase Protection</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Daraz Pick Up Points</a></li>
+      </ul>
+    </div>
+
+    <!-- Daraz Section -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-700">Daraz</h3>
+      <ul class="mt-2 space-y-1">
+        <li><a href="#" class="text-blue-600 hover:underline">About Us</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Digital Payments</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Daraz Donates</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Daraz Blog</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Privacy Policy</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Online Shopping App</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Online Grocery Shopping</a></li>
+        <li><a href="#" class="text-blue-600 hover:underline">Sell on Daraz</a></li>
+      </ul>
+    </div>
+
+    <!-- App Download Section -->
+    <div class="text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <img src="CARD (2).jpg" alt="Daraz Logo" class="h-8">
+        <span class="text-orange-500 font-semibold">Happy Shopping</span>
+      </div>
+      <p class="text-gray-600 text-sm mb-3">Download App</p>
+
+      <!-- App Buttons (Now properly aligned & equal width) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="#" class="bg-black text-white px-6 py-3 rounded-md flex items-center justify-center space-x-2 hover:opacity-80 transition">
+          <img src="apple store.png" alt="App Store" class="h-6"> <span>App Store</span>
+        </a>
+        <a href="#" class="bg-black text-white px-6 py-3 rounded-md flex items-center justify-center space-x-2 hover:opacity-80 transition">
+          <img src="play store.png" alt="Google Play" class="h-6"> <span>Google Play</span>
+        </a>
+        <a href="#" class="bg-black text-white px-6 py-3 rounded-md flex items-center justify-center space-x-2 hover:opacity-80 transition">
+          <img src="appgallery.avif" alt="AppGallery" class="h-6"> <span>AppGallery</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--payments method-->
+<footer class="bg-white py-6 border-t mt-8">
+  <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      
+      <!-- Payment Methods -->
+      <div>
+        <h3 class="text-lg font-semibold mb-3">Payment Methods</h3>
+        <div class="flex flex-wrap gap-3 items-center">
+          <img src="payment (1).png" alt="Cash on Delivery" class="h-8">
+          <img src="payment (2).png" alt="Visa" class="h-8">
+          <img src="payment (3).png" alt="MasterCard" class="h-8">
+          <img src="payment (4).png" alt="EasyPaisa" class="h-8">
+          <img src="payment (5).png" alt="Daraz Wallet" class="h-8">
+          <img src="payment (6).png" alt="JazzCash" class="h-8">
+          <img src="payment (7).png" alt="UnionPay" class="h-8">
+          <img src="payment (8).png" alt="HBL" class="h-8">
+          <img src="payment (9).png" alt="EMI" class="h-8">
+        </div>
+      </div>
+
+      <!-- Verified By -->
+      <div>
+        <h3 class="text-lg font-semibold mb-3">Verified by</h3>
+        <img src="verify.png" alt="PCI DSS" class="h-10">
+      </div>
+
+    </div>
+  </div>
+</footer>
+<!-- Footer Bottom -->
+<footer class="bg-gray-100 text-gray-700 px-6 py-10">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <!-- Column 1: Text -->
+    <div>
+      <h2 class="text-lg font-semibold mb-2">How Daraz Transformed Online Shopping in Pakistan</h2>
+      <p class="text-sm leading-relaxed">
+        How Daraz Transformed Online Shopping in Pakistan
+
+        Daraz first made waves in Pakistan’s e-commerce market after its introduction in 2012. We have since grown to become Pakistan’s largest platform for online shopping with a network spread across Asia in Pakistan, Bangladesh, Sri Lanka, Myanmar, and Daraz.com.np. Our vision was to provide a safe, efficient online marketplace platform for vendors and customers across the country to come together. We started off exclusively as an online fashion retail platform and over the years expanded to become a complete one-stop solution for all your buying needs. Daraz prides itself on not being just another ecommerce venture in Asia. We work tirelessly to make sure that we provide users with the best online online shopping experience and value for their purchases. Whether you shop online through our website or our online shopping mobile App, you can expect easy navigation, customized recommendations, and a smooth online shopping experience guaranteed.
+        What Makes Us Different from Other Online Shopping Platforms?
+        Select from the Largest Online Marketplace in Pakistan
+        With over 15 million products to select from, Daraz offers its customers the most comprehensive listing of products in the country. Whether you’re looking for electronics, apparel, appliances, or groceries – there is something for everyone.
+        
+        Hassle Free Delivery
+        Online shopping is only as good as its execution and Daraz promises hassle free delivery right from the moment you order to when your package is dropped at your door. We cater to both major and smaller cities alike, and give you the choice to track your package as it makes its way to you so you always know your order status. If you are unsatisfied with any aspect of your order, we have a simple 7-day return or exchange policy.
+        
+        Payment Options to Suit Every Style
+        You can choose to pay through a credit/debit card, opt for cash on delivery or even go for EMI (easy monthly instalments). You can also 
+      </p>
+    </div>
+
+    <!-- Column 2: Text -->
+    <div>
+      <h2 class="text-lg font-semibold mb-2">What Makes Us Different From Other Online Shopping Platforms?</h2>
+      <p class="text-sm leading-relaxed">
+        Daraz understands that online shopping in Pakistan comes with its fair share of risks. This is why with Daraz Marketplace and Daraz Mall customers have the security of choosing from verified vendors and brands from Karachi, Lahore, Islamabad and all across Pakistan. Now you’ll never have to second guess authenticity because Daraz makes sure to do it for you!
+        Shop Around the World with Daraz Global Collection
+        International sellers and local convenience come together with Daraz Global collection. Get the chance to shop online from vendors around the world without leaving the Daraz website. Featuring thousands of novelty gadgets and accessories, Daraz Global Collection offers you a selection of products that you won’t find anywhere else when you’re online shopping in Pakistan.
+        
+        Avail Exclusive Discounts, Offers, and Promotions
+        Online shopping with Daraz means you get the chance to avail exclusive online-only promotional packages as well as discount vouchers from our vendors when you shop from their pages. Our flash sales give you customized product offers all curated with the help of our advanced AI technology so you always have deals you’ll actually be interested in!
+        
+        Buy Value, not Just Goods with Daraz Care
+        Daraz does not just cater online shopping in Pakistan but also aims to simplify the way you give back to society. With charities spanning across sectors of education, health care, environmental preservation, and shelters, you can choose to make a big difference with a few, simple clicks.
+        
+        Simplify Corporate Purchases
+        Who says corporate purchases need to be a complicated affair? When you opt for Daraz Corporate, you get an efficient and transparent solution for your business’ bulk purchasing needs. We’re proud to be working with some of the most prestigious organizations in Pakistan across a number of different industries. </p>
+    </div>
+
+    <!-- Column 3: Links -->
+    <div>
+      <h2 class="text-lg font-semibold mb-2">Top Categories</h2>
+      <ul class="text-sm space-y-1">
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Links -->
+    <div>
+      <h2 class="text-lg font-semibold mb-2">Top Brands</h2>
+      <ul class="text-sm space-y-1">
+        <li><a href="https://www.apple.com/" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Samsung</a></li>
+        <li><a href="#" class="hover:text-blue-600">Xiaomi</a></li>
+        <li><a href="#" class="hover:text-blue-600">Infinix</a></li>
+        <li><a href="#" class="hover:text-blue-600">Apple</a></li>
+        <li><a href="#" class="hover:text-blue-600">Realme</a></li>
+        <li><a href="#" class="hover:text-blue-600">Mobile Phones</a></li>
+        <li><a href="#" class="hover:text-blue-600">Laptops</a></li>
+        <li><a href="#" class="hover:text-blue-600">LED TVs</a></li>
+        <li><a href="#" class="hover:text-blue-600">Home Appliances</a></li>
+        <li><a href="#" class="hover:text-blue-600">Health & Beauty</a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Footer Bottom Section -->
+<!-- Tailwind Footer Bottom Section (Enhanced) -->
+<div class="bg-white border-t border-gray-200 px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 text-base text-gray-700">
+  
+  <!-- Daraz International -->
+  <div>
+    <h4 class="font-semibold text-lg mb-3">Daraz International</h4>
+    <div class="flex flex-wrap gap-5 items-center">
+      <div class="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/pk.png" alt="Pakistan" class="w-7 h-7 rounded-full object-cover" />
+        <button class="text-sm md:text-base">Pakistan</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh" class="w-7 h-7 rounded-full object-cover" />
+        <button class="text-sm md:text-base">Bangladesh</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/lk.png" alt="Sri Lanka" class="w-7 h-7 rounded-full object-cover" />
+        <button class="text-sm md:text-base">Sri Lanka</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/mm.png" alt="Myanmar" class="w-7 h-7 rounded-full object-cover" />
+        <button class="text-sm md:text-base">Myanmar</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="https://flagcdn.com/w40/np.png" alt="Nepal" class="w-7 h-7 rounded-full object-cover" />
+        <button class="text-sm md:text-base">Nepal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Icons -->
+  <div>
+    <h4 class="font-semibold text-lg mb-3">Follow Us</h4>
+    <div class="flex gap-6 text-2xl text-gray-600">
+      <a href="#" class="hover:text-[#1877F2]"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="hover:text-[#1DA1F2]"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="hover:text-[#E1306C]"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="hover:text-[#FF0000]"><i class="fab fa-youtube"></i></a>
+      <a href="#" class="hover:text-orange-500"><i class="fas fa-globe"></i></a>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-gray-500 text-sm md:text-base self-center md:self-auto">
+    © Daraz 2025
+  </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
